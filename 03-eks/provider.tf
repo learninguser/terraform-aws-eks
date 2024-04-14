@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.38" # eks module requires more than 5.38
+      version = "~> 5.0" # eks module requires more than 5.38
     }
   }
 
@@ -10,7 +10,7 @@ terraform {
     bucket         = "learninguser"
     key            = "eks"
     region         = "us-east-1"
-    dynamodb_table = "terrafom_lock"
+    dynamodb_table = "terraform_lock"
   }
 }
 
