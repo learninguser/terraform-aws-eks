@@ -10,7 +10,7 @@ terraform {
     bucket = "learninguser"
     key    = "vpc"
     region = "us-east-1"
-    dynamodb_table = "terraform-lock"
+    dynamodb_table = "terraform_lock"
   }
 }
 
