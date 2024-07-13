@@ -50,6 +50,7 @@ module "eks" {
     #     AmazonEBSCSIDriverPolicy          = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
     #     AmazonElasticFileSystemFullAccess = "arn:aws:iam::aws:policy/AmazonElasticFileSystemFullAccess"
     #     AmazonEC2FullAccess               = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+    #     AmazonRDSFullAccess               = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
     #   }
     # }
   }
