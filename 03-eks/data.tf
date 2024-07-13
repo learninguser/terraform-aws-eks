@@ -14,6 +14,15 @@ data "aws_ssm_parameter" "private_subnet_ids" {
   name = "/${var.project_name}/${var.environment}/private_subnet_ids"
 }
 
+data "aws_ssm_parameter" "public_subnet_ids" {
+  name = "/${var.project_name}/${var.environment}/public_subnet_ids"
+}
+
+
 data "aws_vpc" "default" {
   default = true
+}
+
+data "aws_ssm_parameter" "cluster_name" {
+  name = "/${var.project_name}/${var.environment}/cluster_name"
 }
