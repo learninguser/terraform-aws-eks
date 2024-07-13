@@ -65,7 +65,7 @@ resource "aws_security_group_rule" "node_ingress" {
   security_group_id        = module.node.sg_id
 }
 
-resource "aws_security_group_rule" "test" {
+resource "aws_security_group_rule" "allow-ephemeral" {
   type              = "ingress"
   from_port         = 30000
   to_port           = 32767
@@ -74,7 +74,16 @@ resource "aws_security_group_rule" "test" {
   security_group_id = module.node.sg_id
 }
 
-resource "aws_security_group_rule" "allow_everyone" {
+resource "aws_security_group_rule" "allow_http" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.node.sg_id
+}
+
+resource "aws_security_group_rule" "db_node" {
   type                     = "ingress"
   from_port                = 3306
   to_port                  = 3306
