@@ -65,7 +65,7 @@ resource "aws_security_group_rule" "node_ingress" {
   security_group_id        = module.node.sg_id
 }
 
-resource "aws_security_group_rule" "allow-ephemeral" {
+resource "aws_security_group_rule" "allow_ephemeral" {
   type              = "ingress"
   from_port         = 30000
   to_port           = 32767
