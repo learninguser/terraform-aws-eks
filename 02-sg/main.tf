@@ -1,11 +1,11 @@
 module "db" {
-  source = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
-  project_name = var.project_name
-  environment = var.environment
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
   sg_description = "SG for DB MySQL Instances"
-  vpc_id = data.aws_ssm_parameter.vpc_id.value
-  common_tags = var.common_tags
-  sg_name = "db"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  common_tags    = var.common_tags
+  sg_name        = "db"
 }
 
 module "ingress" {
@@ -75,10 +75,19 @@ resource "aws_security_group_rule" "test" {
 }
 
 resource "aws_security_group_rule" "allow_everyone" {
-  type              = "ingress"
-  from_port         = 3306
-  to_port           = 3306
-  protocol          = "tcp"
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
   source_security_group_id = module.node.sg_id
-  security_group_id = module.db.sg_id
+  security_group_id        = module.db.sg_id
+}
+
+resource "aws_security_group_rule" "cluster_default_vpc" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = ["172.31.0.0/16"]
+  security_group_id = module.cluster.sg_id
 }
