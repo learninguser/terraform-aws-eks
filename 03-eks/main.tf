@@ -5,7 +5,7 @@ module "eks" {
   cluster_name    = data.aws_ssm_parameter.cluster_name.value
   cluster_version = "1.30"
 
-  cluster_endpoint_public_access = true
+  cluster_endpoint_public_access = false
 
   vpc_id                   = local.vpc_id
   subnet_ids               = split(",", local.private_subnet_ids)
